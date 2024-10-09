@@ -22,7 +22,7 @@ content-type: application/json
 }
 
 ### UPDATE EMPLOYEE
-PUT http://localhost:3000/employees/67065ee5e1f72cc6e23b421e HTTP/1.1
+PUT http://localhost:3000/employees/67066695ad5852a74c99247a HTTP/1.1
 content-type: application/json
 
 {
@@ -33,11 +33,12 @@ content-type: application/json
     "startDate": "Update, 2024",
     "wage": "Update 15",
     "position": "Update clerk",
-    "team": "Update Service"
+    "team": "Update team"
 }
 
 ### DELETE EMPLOYEE
-DELETE http://localhost:3000/employees/67065ee5e1f72cc6e23b421e
+DELETE http://localhost:3000/employees/67066211368f226bcdf77686
+
 content-type: application/json
 
 

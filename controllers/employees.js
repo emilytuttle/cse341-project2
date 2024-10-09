@@ -15,8 +15,8 @@ const getAll = async (req, res) => {
 };
 const getSingle = async (req, res) => {
     //#swagger.tags=["Employees"]
-    const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('employees').find({_id: userId});
+    const employeeId = new ObjectId(req.params.id);
+    const result = await mongodb.getDatabase().db().collection('employees').find({_id: employeeId});
     result.toArray().then((employees) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(employees[0]);
@@ -48,8 +48,8 @@ const createEmployee = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
     //#swagger.tags=["Employees"]
-    const userId = new ObjectId(req.params.id)
-    const user = {
+    const employeeId = new ObjectId(req.params.id)
+    const employee = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -59,18 +59,18 @@ const updateEmployee = async (req, res) => {
         position: req.body.position,
         team: req.body.team
     };
-    const response = await mongodb.getDatabase().db().collection('employees').replaceOne({_id: employeeId}, user)
+    const response = await mongodb.getDatabase().db().collection('employees').replaceOne({_id: employeeId}, employee)
     if(response.modifiedCount > 0) {
         res.status(204).send();
     } else {
-        res.status(500).json(response.error || 'Error occurred while updating user')
+        res.status(500).json(response.error || 'Error occurred while updating employee')
     }
 }
 
 const deleteEmployee = async (req, res) => {
     //#swagger.tags=["Employees"]
-    const userId = new ObjectId(req.params.id)
-    const user = {
+    const employeeId = new ObjectId(req.params.id)
+    const employee = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,

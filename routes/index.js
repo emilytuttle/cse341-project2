@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/', dataDisplay.dataDisplay);
-// router.use('/employees', require('./employees'));
+router.use('/employees', require('./employees'));
 // router.use('/teams', require('./teams'))
 
 module.exports = router;

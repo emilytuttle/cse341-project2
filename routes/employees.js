@@ -1,15 +1,16 @@
 const express = require('express');
-const routes = express.Router();
+const router = express.Router();
 const { userValidationRules, validate } = require('../validation.js')
+const { isAuthenticated } = require("../middleware/authenticate")
 
 const employeeController = require('../controllers/employees');
 
-routes.get('/', employeeController.getAll);
+router.get('/', employeeController.getAll);
 
-routes.get('/:id', employeeController.getSingle);
+router.get('/:id', employeeController.getSingle);
 
-routes.post('/', userValidationRules(), validate, employeeController.createEmployee);
-routes.put('/:id', userValidationRules(), validate, employeeController.updateEmployee);
-routes.delete('/:id', employeeController.deleteEmployee);
+router.post('/', isAuthenticated, userValidationRules(), validate, employeeController.createEmployee);
+router.put('/:id', isAuthenticated, userValidationRules(), validate, employeeController.updateEmployee);
+router.delete('/:id', isAuthenticated, employeeController.deleteEmployee);
 
-module.exports = routes;
+module.exports = router;
